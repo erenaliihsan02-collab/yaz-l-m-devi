@@ -1,0 +1,27 @@
+class Arac:
+    def __init__(self, marka, gunluk_fiyat, *args):
+        self.marka = marka
+        self.gunluk_fiyat = gunluk_fiyat [cite: 130, 131, 132, 133]
+        self.musait_mi = True [cite: 134]
+        self.ozellikler = args [cite: 135]
+
+class Musteri:
+    def __init__(self, isim):
+        self.isim = isim
+        self.kiraladigi_araclar = [] [cite: 138, 139, 140]
+
+    def arac_kirala(self, arac):
+        if arac.musait_mi: [cite: 141, 142]
+            arac.musait_mi = False [cite: 143, 144]
+            self.kiraladigi_araclar.append(arac) [cite: 145]
+            print(f"{self.isim}, {arac.marka} aracını kiraladı.") [cite: 146]
+        else:
+            print(f"Maalesef {arac.marka} şu an müsait değil.") [cite: 148]
+
+    def arac_iade_et(self, arac):
+        if arac in self.kiraladigi_araclar:
+            arac.musait_mi = True [cite: 149, 150, 151, 152]
+            self.kiraladigi_araclar.remove(arac) [cite: 153]
+            print(f"{self.isim}, {arac.marka} aracını iade etti.") [cite: 154]
+        else:
+            print("Bu araç sizde kiralık görünmüyor.") [cite: 156]
