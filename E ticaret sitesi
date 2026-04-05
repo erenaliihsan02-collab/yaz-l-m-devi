@@ -1,0 +1,40 @@
+class Urun:
+    def __init__(self, isim, fiyat, stok):
+        self.isim = isim
+        self.fiyat = fiyat
+        self.stok = stok [cite: 5, 6, 7, 8]
+
+class Sepet:
+    def __init__(self):
+        self.urunler = {} [cite: 12, 15]
+
+    def urun_ekle(self, urun, adet=1):
+        if urun.stok >= adet: [cite: 17, 18]
+            if urun in self.urunler:
+                self.urunler[urun] += adet [cite: 19, 20]
+            else:
+                self.urunler[urun] = adet [cite: 21, 22, 23]
+            urun.stok -= adet [cite: 24, 25]
+            print(f"{adet} adet {urun.isim} sepete eklendi.") [cite: 26]
+        else:
+            print(f"Yeterli stok yok! Mevcut {urun.isim} stoğu: {urun.stok}") [cite: 27, 28, 29]
+
+    def urun_sil(self, urun, adet=1):
+        if urun in self.urunler:
+            if self.urunler[urun] <= adet:
+                iade_adet = self.urunler[urun] [cite: 32, 35]
+                del self.urunler[urun] [cite: 36]
+                urun.stok += iade_adet [cite: 37]
+                print(f"{urun.isim} sepetten tamamen çıkarıldı.") [cite: 38]
+            else:
+                self.urunler[urun] -= adet [cite: 41]
+                urun.stok += adet [cite: 42]
+                print(f"{adet} adet {urun.isim} sepetten çıkarıldı.") [cite: 43]
+        else:
+            print("Bu ürün zaten sepette yok.") [cite: 44]
+
+    def toplam_tutar(self):
+        tutar = 0
+        for urun, adet in self.urunler.items():
+            tutar += urun.fiyat * adet [cite: 45, 46, 47, 48]
+        return tutar [cite: 49]
