@@ -1,0 +1,38 @@
+class Gorev:
+    def __init__(self, baslik, aciklama, **kwargs):
+        self.baslik = baslik
+        self.aciklama = aciklama [cite: 160, 161, 162]
+        self.tamamlandi_mi = False [cite: 163]
+        self.oncelik = kwargs.get('oncelik', 'Normal') [cite: 165, 166]
+
+class Kullanici:
+    def __init__(self, isim):
+        self.isim = isim
+        self.gorevler = [] [cite: 168, 169, 170]
+        self.tamamlanan_gorevler = [] [cite: 171]
+
+    def gorev_ekleme(self, yeni_gorev):
+        for g in self.gorevler:
+            if g.baslik == yeni_gorev.baslik: [cite: 173, 174, 175]
+                print(f"Hata: '{yeni_gorev.baslik}' adlı görev zaten var!") [cite: 176, 177]
+                return
+        self.gorevler.append(yeni_gorev) [cite: 179]
+        print(f"Görev eklendi: {yeni_gorev.baslik} (Öncelik: {yeni_gorev.oncelik})") [cite: 180, 181]
+
+    def gorev_silme(self, gorev_baslik):
+        for g in self.gorevler:
+            if g.baslik == gorev_baslik:
+                self.gorevler.remove(g) [cite: 183, 184, 185]
+                print(f"Görev silindi: {gorev_baslik}") [cite: 186]
+                return
+        print("Böyle bir görev bulunamadı.") [cite: 187]
+
+    def gorev_tamamlama(self, gorev_baslik):
+        for g in self.gorevler:
+            if g.baslik == gorev_baslik:
+                g.tamamlandi_mi = True [cite: 189, 190, 191, 192]
+                self.tamamlanan_gorevler.append(g) [cite: 193]
+                self.gorevler.remove(g) [cite: 194]
+                print(f"Tebrikler! '{gorev_baslik}' tamamlandı.") [cite: 195, 196]
+                return
+        print("Tamamlanacak görev bulunamadı.") [cite: 198]
