@@ -1,0 +1,41 @@
+class Kitap:
+    def __init__(self, isim, yazar, **kwargs):
+        self.isim = isim
+        self.yazar = yazar [cite: 85, 86, 87]
+        self.durum = "rafta" [cite: 88]
+        self.turu = kwargs.get('turu', 'Belirtilmemiş') [cite: 89, 92]
+
+class Kullanici:
+    def __init__(self, isim):
+        self.isim = isim
+        self.aldigi_kitaplar = [] [cite: 93, 94, 95]
+
+class Kutuphane:
+    def __init__(self):
+        self.kitaplar = [] [cite: 98, 99]
+
+    def kitap_ekleme(self, kitap):
+        self.kitaplar.append(kitap) [cite: 100, 101]
+        print(f"'{kitap.isim}' kütüphaneye eklendi.") [cite: 102]
+
+    def odunc_verme(self, kitap, kullanici):
+        if kitap.durum == "odunc_verildi": [cite: 105, 106]
+            print(f"Hata: '{kitap.isim}' zaten başkasına verilmiş.") [cite: 107, 108]
+            return
+        if len(kullanici.aldigi_kitaplar) >= 2: [cite: 110]
+            print(f"Hata: {kullanici.isim} en fazla 2 kitap alabilir.") [cite: 111, 112]
+            return
+        if kitap in self.kitaplar:
+            kitap.durum = "odunc_verildi" [cite: 114, 115]
+            kullanici.aldigi_kitaplar.append(kitap) [cite: 116]
+            print(f"'{kitap.isim}', {kullanici.isim} adlı kullanıcıya ödünç verildi.") [cite: 117, 118]
+        else:
+            print("Böyle bir kitap kütüphanede yok.") [cite: 120]
+
+    def iade_alma(self, kitap, kullanici):
+        if kitap in kullanici.aldigi_kitaplar:
+            kitap.durum = "rafta" [cite: 121, 122, 123]
+            kullanici.aldigi_kitaplar.remove(kitap) [cite: 124]
+            print(f"'{kitap.isim}' kütüphaneye iade edildi.") [cite: 125]
+        else:
+            print(f"{kullanici.isim} bu kitabı almamış görünüyor.") [cite: 127]
